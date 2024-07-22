@@ -27,5 +27,6 @@ footer {
     background-color: #ef2d2dc7;
     background-blend-mode: overlay;
     border-top: 5px solid #2cc9e9e0;
+    padding-top: 5px;
     height: 53px;
 }
