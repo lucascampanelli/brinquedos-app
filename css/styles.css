@@ -1,0 +1,31 @@
+header {
+    background-image: url("../imgs/wallpaper.jfif");
+    background-size: cover;
+    background-position: 100% 33%;
+    background-color: #2cc9e9e0;
+    background-blend-mode: overlay;
+    border-bottom: 5px solid #ef2d2dc7;
+    height: 67px;
+}
+
+.logo {
+    width: 90px;
+    position: absolute;
+    margin-left: -45px;
+    left: 50%;
+    top: 15px;
+}
+
+main {
+    margin-top: 112px;
+}
+
+footer {
+    background-image: url("../imgs/wallpaper.jfif");
+    background-size: cover;
+    background-position: 100% 33%;
+    background-color: #ef2d2dc7;
+    background-blend-mode: overlay;
+    border-top: 5px solid #2cc9e9e0;
+    height: 53px;
+}
