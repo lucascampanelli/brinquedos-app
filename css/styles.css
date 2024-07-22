@@ -18,6 +18,7 @@ header {
 
 main {
     margin-top: 112px;
+    margin-bottom: 80px;
 }
 
 main h2 {
@@ -35,6 +36,10 @@ main h2 span {
     width: 35px;
     height: 35px;
     display: inline-block;
+}
+
+.card {
+    margin-bottom: 40px;
 }
 
 footer {
