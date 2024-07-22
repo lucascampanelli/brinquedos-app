@@ -20,6 +20,23 @@ main {
     margin-top: 112px;
 }
 
+main h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+main h2 span {
+    background: url('../icons/bx-child.svg');
+    background-position: center;
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+
 footer {
     background-image: url("../imgs/wallpaper.jfif");
     background-size: cover;
