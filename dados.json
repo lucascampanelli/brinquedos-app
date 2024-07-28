@@ -1,0 +1,77 @@
+[
+    {
+        "categoria": "Action Figures",
+        "brinquedos": [
+            {
+                "nome": "Superman",
+                "imagem": "imgs/superman.jfif",
+                "valor": "R$ 100,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Iron man",
+                "imagem": "imgs/ironman.jfif",
+                "valor": "R$ 88,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Spider-Man",
+                "imagem": "imgs/spiderman.jfif",
+                "valor": "R$ 94,00",
+                "whatsapp": "5511999999999"
+            }
+        ]
+    },
+    {
+        "categoria": "Futebol",
+        "brinquedos": [
+            {
+                "nome": "Coleção Seleção Brasileira I",
+                "imagem": "imgs/selecaobrasil-1.jfif",
+                "valor": "R$ 174,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Coleção Seleção Brasileira II",
+                "imagem": "imgs/selecaobrasil-2.jfif",
+                "valor": "R$ 194,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Coleção Seleção Brasileira III",
+                "imagem": "imgs/selecaobrasil-3.jfif",
+                "valor": "R$ 200,20",
+                "whatsapp": "5511999999999"
+            }
+        ]
+    },
+    {
+        "categoria": "Desenhos Animados",
+        "brinquedos": [
+            {
+                "nome": "As Aventuras de Tintim",
+                "imagem": "imgs/tintim.jfif",
+                "valor": "R$ 200,30",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Pokémon",
+                "imagem": "imgs/pikachu.jfif",
+                "valor": "R$ 67,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Tartarugas Ninja",
+                "imagem": "imgs/tartarugasninjas.jfif",
+                "valor": "R$ 93,00",
+                "whatsapp": "5511999999999"
+            },
+            {
+                "nome": "Super Onze",
+                "imagem": "imgs/superonze.jfif",
+                "valor": "R$ 84,00",
+                "whatsapp": "5511999999999"
+            }
+        ]
+    }
+]
