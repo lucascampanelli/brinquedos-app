@@ -78,6 +78,8 @@ function renderizarConteudo(dados) {
         // Adiciona o conteúdo gerado ao container de conteúdo
         container.innerHTML = htmlContent;
 
+        cacheDinamico(dados);
+
     }
 
 }
@@ -109,5 +111,54 @@ function obterHtmlComListagemBrinquedos(brinquedo) {
     htmlBrinquedos += `</div>`;
 
     return htmlBrinquedos;
+
+}
+
+
+
+// Construindo o cache dinâmico
+
+var cacheDinamico = function(dados) {
+
+    if('caches' in window) {
+
+        console.log("Deletando o cache dinâmico antigo.");
+        
+        // Removendo o cache dinãmico anterior (o cache estático do SW permanece armazenado)
+        caches.delete("brinquedo-app-dinamico").then(function (){
+
+            // Se existirem registros
+            if(dados.length > 0) {
+
+                let files = ['dados.json'];
+
+                dados.forEach(registro => {
+
+                    registro.brinquedos.forEach(brinquedo => {
+
+                        // Se a imagem do brinquedo ainda não existir no cache
+                        if(files.indexOf(brinquedo.imagem) == -1)
+                            // Adiciona a imagem do brinquedo ao cache
+                            files.push(brinquedo.imagem);
+
+                    });
+
+                });
+
+            }
+
+            caches.open("brinquedo-app-dinamico").then(function (cache) {
+
+                cache.addAll(files).then(function(){
+
+                    console.log("Novo cache dinâmico adicionado.");
+
+                });
+
+            });
+
+        });
+        
+    }
 
 }
