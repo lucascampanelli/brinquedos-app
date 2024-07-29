@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toy Collections</title>
+
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="imgs/logo.webp">
+
+    <!-- IOS meta tags and icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Toy Collections">
+    <link rel="apple-touch-icon" href="imgs/favicon.ico">
+
+    <meta name="description" content="App para coleção de brinquedos">
+    <meta name="theme-color" content="#2cc9e9e0">
+
+    <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+    
+    <header class="container-fluid fixed-top">
+
+        <img src="imgs/logo.webp" class="logo">
+
+    </header>
+
+
+    <section class="container" style="margin-top: 120px;">
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <div class="alert alert-warning" role="alert">
+
+                    <img src="imgs/offline.png" width="30"/>
+                    Você está acessando está pagina offline. Veja os últimos itens visitados.
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <main class="container" id="conteudo" style="margin-top: 10px;">
+
+        <!-- OS DADOS SERÃO RENDERIZADOS AQUI -->
+
+    </main>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+
+        const fetchData = fetch("./dados.json");
+
+        dataJSON = fetchData.then(response => response.json());
+
+        dataJSON.then(dados => renderizarConteudo(dados));
+
+
+
+        function renderizarConteudo(dados) {
+            
+            // Especificar o container que receberá o conteúdo obtido pela requisição
+            let container = document.getElementById("conteudo");
+
+
+
+            // Se nenhum brinquedo estiver cadastrado no JSON
+            if(dados.length < 1) {
+
+                container.innerHTML = "<div class='alert alert-warning' role='alert'>Desculpe, ainda não temos brinquedos cadastrados!</div>";
+            
+            }
+            else {
+
+                // Inicializando a variável que terá o conteúdo a ser renderizado
+                let htmlContent = "";
+
+
+                // Para cada categoria obtida
+                dados.forEach(registro => {
+                    
+                    // Concatena ao conteúdo a categoria iterada
+                    htmlContent += `
+                    <div class="row">
+                        <!-- Coluna que preenche as 12 colunas do grid -->
+                        <div class="col-12">
+                            <h2>
+                                <span></span>
+                                ${registro.categoria}
+                            </h2>
+                        </div>
+                    </div>`;
+
+                    // Se a categoria não tiver brinquedos
+                    if(registro.brinquedos.length < 1){
+
+                        htmlContent += `
+                        <div class="row">
+                            <!-- Coluna que preenche as 12 colunas do grid -->
+                            <div class="col-12">
+                                <div class="alert alert-warning" role="alert">
+                                    Desculpe, ainda não temos brinquedos para esta categoria!
+                                </div>
+                            </div>
+                        </div>`;
+                    
+                    }
+                    else {
+
+                        htmlContent += `<div class="row">`;
+
+                        // Para cada brinquedo da categoria
+                        registro.brinquedos.forEach(brinquedo => {
+
+                            htmlContent += `<!-- 4 colunas do grid no desktop --><div class="col-lg-4">`;
+
+                            htmlContent += obterHtmlComListagemBrinquedos(brinquedo);
+
+                            htmlContent += `</div>`;
+
+                        })
+
+                        htmlContent += `</div>`;
+
+                    }
+
+                });
+
+                // Adiciona o conteúdo gerado ao container de conteúdo
+                container.innerHTML = htmlContent;
+
+                cacheDinamico(dados);
+
+            }
+
+        }
+
+        function obterHtmlComListagemBrinquedos(brinquedo) {
+
+            let htmlBrinquedos = "";
+
+            htmlBrinquedos += `<div class="card">`;
+
+                htmlBrinquedos += `<img src="${brinquedo.imagem}" class="card-img-top" alt="${brinquedo.nome}">`;
+
+                htmlBrinquedos += `<div class="card-body">`;
+
+                    htmlBrinquedos += `<h5 class="card-title">${brinquedo.nome}</h5>`;
+            
+                    htmlBrinquedos += `<p class="card-text">Action figure épica do Superman, o clássico super-herói.</p>`;
+
+                    htmlBrinquedos += `<p>${brinquedo.valor}</p>`;
+            
+                    htmlBrinquedos += `<div class="d-grid gap-2">`;
+
+                        htmlBrinquedos += `<a href="https://api.whatsapp.com/send?phone=${brinquedo.whatsapp}&text=Olá! Gostaria de informações sobre ${brinquedo.nome}" class="btn btn-primary">Comprar</a>`;
+
+                    htmlBrinquedos += `</div>`;
+            
+                htmlBrinquedos += `</div>`;
+
+            htmlBrinquedos += `</div>`;
+
+            return htmlBrinquedos;
+
+        }
+
+    </script>
+
+</body>
+</html>
