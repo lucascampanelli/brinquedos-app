@@ -100,7 +100,7 @@ function obterHtmlComListagemBrinquedos(brinquedo) {
     
             htmlBrinquedos += `<div class="d-grid gap-2">`;
 
-                htmlBrinquedos += `<a href="#" class="btn btn-primary">Comprar</a>`;
+                htmlBrinquedos += `<a href="https://api.whatsapp.com/send?phone=${brinquedo.whatsapp}&text=Olá! Gostaria de informações sobre ${brinquedo.nome}" class="btn btn-primary">Comprar</a>`;
 
             htmlBrinquedos += `</div>`;
     
