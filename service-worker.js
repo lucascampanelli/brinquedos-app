@@ -1,6 +1,7 @@
 'use-strict';
 
 
+
 // Nome do cache que será guardado
 const CACHE_NAME = "brinquedo-app-estatico";
 
@@ -17,6 +18,7 @@ const FILES_TO_CACHE = [
     'offline.html'
 
 ];
+
 
 
 // Instalação do Service Worker
@@ -71,5 +73,31 @@ self.addEventListener('activate', (evt) => {
     )
 
     self.clients.claim();
+
+});
+
+
+
+// Responder página offline do app
+
+// Adicionando uma função ao evento "fetch" do componente que está rodando este script
+self.addEventListener("fetch", (evento) => {
+
+    if(evento.request.mode != "navigate")
+        return;
+
+    evento.respondWith(
+
+        fetch(evento.request).catch(() => {
+
+            return caches.open(CACHE_NAME).then((cache) => {
+                
+                return cache.match('offline.html');
+
+            })
+
+        })
+
+    )
 
 })
