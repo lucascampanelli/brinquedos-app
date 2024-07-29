@@ -29,7 +29,49 @@ function renderizarConteudo(dados) {
         dados.forEach(registro => {
             
             // Concatena ao conteúdo a categoria iterada
-            htmlContent += `<div class="row"><!-- Coluna que preenche as 12 colunas do grid --><div class="col-12"><h2><span></span>${registro.categoria}</h2></div></div>`;
+            htmlContent += `
+            <div class="row">
+                <!-- Coluna que preenche as 12 colunas do grid -->
+                <div class="col-12">
+                    <h2>
+                        <span></span>
+                        ${registro.categoria}
+                    </h2>
+                </div>
+            </div>`;
+
+            // Se a categoria não tiver brinquedos
+            if(registro.brinquedos.length < 1){
+
+                htmlContent += `
+                <div class="row">
+                    <!-- Coluna que preenche as 12 colunas do grid -->
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            Desculpe, ainda não temos brinquedos para esta categoria!
+                        </div>
+                    </div>
+                </div>`;
+            
+            }
+            else {
+
+                htmlContent += `<div class="row">`;
+
+                // Para cada brinquedo da categoria
+                registro.brinquedos.forEach(brinquedo => {
+
+                    htmlContent += `<!-- 4 colunas do grid no desktop --><div class="col-lg-4">`;
+
+                    htmlContent += obterHtmlComListagemBrinquedos(brinquedo);
+
+                    htmlContent += `</div>`;
+
+                })
+
+                htmlContent += `</div>`;
+
+            }
 
         });
 
@@ -37,5 +79,35 @@ function renderizarConteudo(dados) {
         container.innerHTML = htmlContent;
 
     }
+
+}
+
+function obterHtmlComListagemBrinquedos(brinquedo) {
+
+    let htmlBrinquedos = "";
+
+    htmlBrinquedos += `<div class="card">`;
+
+        htmlBrinquedos += `<img src="${brinquedo.imagem}" class="card-img-top" alt="${brinquedo.nome}">`;
+
+        htmlBrinquedos += `<div class="card-body">`;
+
+            htmlBrinquedos += `<h5 class="card-title">${brinquedo.nome}</h5>`;
+    
+            htmlBrinquedos += `<p class="card-text">Action figure épica do Superman, o clássico super-herói.</p>`;
+
+            htmlBrinquedos += `<p>${brinquedo.valor}</p>`;
+    
+            htmlBrinquedos += `<div class="d-grid gap-2">`;
+
+                htmlBrinquedos += `<a href="#" class="btn btn-primary">Comprar</a>`;
+
+            htmlBrinquedos += `</div>`;
+    
+        htmlBrinquedos += `</div>`;
+
+    htmlBrinquedos += `</div>`;
+
+    return htmlBrinquedos;
 
 }
